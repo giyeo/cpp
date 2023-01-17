@@ -1,8 +1,8 @@
-NAME := megaphone
+NAME := executable
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
-SRCS := ./megaphone.cpp
+SRCS := ./main.cpp
 
 OBJDIR := ./objs/
 OBJS := $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
