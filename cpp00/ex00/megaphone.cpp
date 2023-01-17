@@ -1,17 +1,18 @@
 #include <iostream>
+#include <cstdlib>
 
 void    megaphone(int argc, char **argv)
 {
-    if(argc == 1)
+    if (argc == 1)
     {
         std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl; 
-        exit(1);
+        std::exit(1);
     }
-    for(int j = 1; j < argc; j++)
+    for (size_t j = 1; j < (size_t)argc; j++)
     {
-        std::string st = argv[j];
-        for(int i = 0; i < st.size(); i++)
-            std::cout << (char)toupper(st[i]);
+        std::string current = argv[j];
+        for (size_t i = 0; i < current.size(); i++)
+            std::cout << (char)toupper(current[i]);
     }
     std::cout << std::endl;
 }

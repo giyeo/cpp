@@ -1,5 +1,6 @@
-#include <iostream>
-#include "phoneBook.hpp"
+#include "PhoneBook.hpp"
+
+int PhoneBook::counterContacts = 0;
 
 std::string format(std::string toFormat)
 {
@@ -16,28 +17,43 @@ std::string format(std::string toFormat)
 void PhoneBook::printContact(int index)
 {
 	std::cout
-	<< this->contact[index].firstName << "\n"
-	<< this->contact[index].lastName << "\n"
-	<< this->contact[index].nickname << "\n"
-	<< this->contact[index].phoneNumber << "\n"
-	<< this->contact[index].darkestSecret << "\n";
+	<< "First name: " << this->contact[index].firstName << "\n"
+	<< "Last name: " << this->contact[index].lastName << "\n"
+	<< "Nickname: " << this->contact[index].nickname << "\n"
+	<< "Phone number: " << this->contact[index].phoneNumber << "\n"
+	<< "Darkest secret: " << this->contact[index].darkestSecret << "\n";
 }
 
+int	isContactEmpty(Contact newUser)
+{
+	if(newUser.firstName.empty()
+	|| newUser.lastName.empty()
+	|| newUser.nickname.empty()
+	|| newUser.phoneNumber.empty()
+	|| newUser.darkestSecret.empty())
+		return (1);
+	return(0);
+}
 void PhoneBook::addUser(void)
 {
 	Contact inputContact;
-	std::cout << "first name: ";
-	std::cin >> inputContact.firstName; 
-	std::cout << "last name: ";
-	std::cin >> inputContact.lastName;
-	std::cout << "nickname: ";
-	std::cin >> inputContact.nickname; 
-	std::cout << "phone number: ";
-	std::cin >> inputContact.phoneNumber; 
-	std::cout << "darkest secret: ";
-	std::cin >> inputContact.darkestSecret;
-	contact[counterContacts % MAX_CONTACTS] = inputContact;
-	this->counterContacts++;
+	std::cout << "First name: ";
+	std::getline(std::cin, inputContact.firstName);
+	std::cout << "Last name: ";
+	std::getline(std::cin, inputContact.lastName);
+	std::cout << "Nickname: ";
+	std::getline(std::cin, inputContact.nickname);
+	std::cout << "Phone number: ";
+	std::getline(std::cin, inputContact.phoneNumber);
+	std::cout << "Darkest secret: ";
+	std::getline(std::cin, inputContact.darkestSecret);
+	if (isContactEmpty(inputContact))
+	{
+		std::cout << "You must fill all contact fields\n";
+		return ;
+	}
+	contact[PhoneBook::counterContacts % MAX_CONTACTS] = inputContact;
+	PhoneBook::counterContacts++;
 }
 
 void	PhoneBook::printAvailableContacts(void)
@@ -45,7 +61,7 @@ void	PhoneBook::printAvailableContacts(void)
 	for(int index = 0; index < MAX_CONTACTS; index++)
 	{
 		if(!contact[index].firstName.empty())
-		std::cout << index
+		std::cout << "         " << index
 		<< "|" << format(contact[index].firstName)
 		<< "|" << format(contact[index].lastName)
 		<< "|" << format(contact[index].nickname)
@@ -55,17 +71,24 @@ void	PhoneBook::printAvailableContacts(void)
 
 void PhoneBook::searchUser(void)
 {
+	if(PhoneBook::counterContacts == 0)
+	{
+		std::cout << "No available contacts.\n";
+		return ;
+	}
 	this->printAvailableContacts();
 	while(true)
 	{
 		std::string index;
-		std::cout << "insert index of desired contact (-1 to leave): ";
+		std::cout << "insert index of desired contact (press Enter to leave): ";
 		try
 		{
-			std::cin >> index;
-			int intIndex = stoi(index);
-			if (intIndex == -1)
+			int intIndex;
+			std::getline(std::cin, index);
+			if (index.empty())
 				return ;
+			std::stringstream ss(index);
+			ss >> intIndex;
 			if (intIndex < 0 || intIndex > 8 || this->contact[intIndex].firstName.empty())
 				std::cout << "index out of range, please, type a valid number!\n";
 			else
@@ -84,19 +107,18 @@ void PhoneBook::searchUser(void)
 void	phoneBook(void)
 {
 	PhoneBook book;
-	std::cout << "Welcome to the Awesome PhoneBook!\n";
-	std::cout << "Available commands: ";
+	std::cout << "Welcome to the Awesome PhoneBook!\nAvailable commands: ";
 	while(true)
 	{
-		std::cout << "(ADD, SEARCH, EXIT): ";
+		std::cout << "use (ADD, SEARCH, EXIT): ";
 		std::string userOption;
-		std::cin >> userOption;
+		std::getline(std::cin, userOption);
 		if (!userOption.compare("ADD"))
 			book.addUser();
-		if (!userOption.compare("SEARCH"))
+		else if (!userOption.compare("SEARCH"))
 			book.searchUser();
-		if (!userOption.compare("EXIT"))
-			exit(0);
+		else if (!userOption.compare("EXIT"))
+			std::exit(0);
 	}
 }
 

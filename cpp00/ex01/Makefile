@@ -1,8 +1,8 @@
-NAME := recreateLogs
+NAME := phoneBook
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
-SRCS := ./main.cpp ./Account.cpp
+SRCS := ./PhoneBook.cpp
 
 OBJDIR := ./objs/
 OBJS := $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
