@@ -2,19 +2,63 @@
 #include <ctime>
 #include <iostream>
 #include "Account.hpp"
-
+#include <string>
+#include <stdlib.h>
 Account::~Account()
 {
-
+	Account::_displayTimestamp();
+	std::cout
+	<< "index:" << this->_accountIndex << ";"
+	<< "amount:" << this->_amount << ";"
+	<< "closed\n";
 }
 
-Account::Account(int initialDeposit)
+bool	Account::makeWithdrawal(int withdrawal)
 {
-	this->_nbAccounts++;
-	this->_nbDeposits++;
+	bool refused = false;
+	if(this->_amount - withdrawal >= 0)
+	{
+		this->_amount -= withdrawal;
+		this->_totalAmount -= withdrawal;
+		this->_nbWithdrawals++;
+		this->_totalNbWithdrawals++;
+	}
+	else
+		refused = true;
+
+	Account::_displayTimestamp();
+	std::cout
+	<< "index:" << this->_accountIndex << ";"
+	<< "p_amount:" << this->_amount + (refused ? withdrawal : 0) << ";"
+	<< "withdrawal:";
+	if(refused)
+		std::cout << "refused\n";
+	else
+		std::cout << withdrawal << ";"
+	<< "amount:" << this->_amount << ";"
+	<< "nb_withdrawals:" << this->_nbWithdrawals << "\n";
+	return (!refused);
 }
 
-void	displayTime(void)
+void	Account::makeDeposit(int deposit)
+{
+	this->_amount += deposit;
+	this->_totalAmount += deposit;
+	this->_nbDeposits++;
+	if (this->_nbDeposits != 0)
+	{
+		this->_totalNbDeposits++;
+		Account::_displayTimestamp();
+		std::cout
+		<< "index:" << this->_accountIndex << ";"
+		<< "p_amount:" << this->_amount - deposit << ";"
+		<< "deposit:" << deposit << ";"
+		<< "amount:" << this->_amount << ";"
+		<< "nb_deposits:" << this->_nbDeposits << "\n";
+	}
+}
+
+void	Account::_displayTimestamp(void)
 {
 	std::time_t	rawtime;
 	std::tm		*timeinfo;
@@ -23,36 +67,113 @@ void	displayTime(void)
 	std::time(&rawtime);
 	timeinfo = std::localtime(&rawtime);
 	std::strftime(buffer, 80, "[%Y%m%d_%H%M%S]", timeinfo);
-	std::cout << buffer << '\n';
+	std::cout << buffer << " ";
 }
 
-int	getInitialDeposit(void)
+int	Account::getNbAccounts(void)
 {
-	int initialDeposit;
-	while (true)
-	{
-		std::cout << "Initial Deposit: ";
-		try{
-			std::cin >> initialDeposit;
-			if (initialDeposit < 0)
-				std::cout << "Please, type an positive ammount to deposit!\n";
-			else
-				return (initialDeposit);
-		}
-		catch(const std::exception& e)
-		{ std::cerr << "Please, type a valid number" << '\n'; }
-	}
+	return(Account::_nbAccounts);
 }
-
-void	bank(void)
+int	Account::getTotalAmount(void)
 {
-	std::cout << "Welcome do the World's first Bank!, please make your first deposit in order to start!\n";
-	Account accounts(getInitialDeposit());
-
+	return(Account::_totalAmount);
 }
-
-int main (void)
+int	Account::getNbDeposits(void)
 {
-	bank();
-    return (0);
+	return(Account::_totalNbDeposits);
 }
+int	Account::getNbWithdrawals(void)
+{
+	return(Account::_totalNbWithdrawals);
+}
+
+void Account::displayAccountsInfos(void)
+{
+	Account::_displayTimestamp();
+	std::cout
+	<< "accounts:" << Account::getNbAccounts() << ";"
+	<< "total:" << Account::getTotalAmount() << ";"
+	<< "deposits:" << Account::getNbDeposits() << ";"
+	<< "withdrawals:" << Account::getNbWithdrawals() << "\n";
+}
+
+void	Account::displayStatus(void) const
+{
+	Account::_displayTimestamp();
+	std::cout
+	<< "index:" << this->_accountIndex << ";"
+	<< "amount:" << this->_amount << ";"
+	<< "deposits:" << this->_nbDeposits << ";"
+	<< "withdrawals:" << this->_nbWithdrawals << "\n";
+}
+
+Account::Account(int initialDeposit)
+{
+	this->_amount = 0;
+	this->_nbDeposits = -1;
+	this->_nbWithdrawals = 0;
+	this->makeDeposit(initialDeposit);
+	this->_accountIndex = this->_nbAccounts++;
+	this->_displayTimestamp();
+	std::cout 
+	<< "index:"<< this->_accountIndex << ";"
+	<< "amount:" << initialDeposit << ";"
+	<< "created\n";
+}
+
+int Account::_nbAccounts = 0;
+int Account::_totalAmount = 0;
+int Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
+
+// void	display(Account *accounts)
+// {
+// 	for(int i = 0 ; i < 8 ; i++)
+// 		accounts[i].displayStatus();
+// }
+
+// void	destroy(Account *accounts)
+// {
+// 	for(int i = 0 ; i < 8 ; i++)
+// 		accounts[i].~Account();
+// }
+
+// void	displayAllAccounts()
+// {
+// 	Account::displayAccountsInfos();
+// }
+
+// void	deposit(Account *accounts)
+// {
+// 	int deposits[8] = {5,765,564,2,87,23,9,20};
+// 	for(int i = 0 ; i < 8 ; i++)
+// 		accounts[i].makeDeposit(deposits[i]);
+// }
+
+// void	withdraw(Account *accounts)
+// {
+// 	int withdraws[8] = {1000,34,657,4,76,1000,657,7654};
+// 	for(int i = 0 ; i < 8 ; i++)
+// 		accounts[i].makeWithdrawal(withdraws[i]);
+// }
+
+// // void	operations(void)
+// // {
+// // 	Account *accounts;
+// // 	accounts = new Account[8]{{42},{54},{957},{432},{1234},{0},{754},{16576}};
+// // 	displayAllAccounts();
+// // 	display(accounts);
+// // 	deposit(accounts);
+// // 	displayAllAccounts();
+// // 	display(accounts);
+// // 	withdraw(accounts);
+// // 	displayAllAccounts();
+// // 	display(accounts);
+// // 	destroy(accounts);
+// // }
+
+// // int main (void)
+// // {
+// // 	operations();
+// //     return (0);
+// // }
