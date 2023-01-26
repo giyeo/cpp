@@ -1,9 +1,8 @@
+#include "my_sed.hpp"
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <iostream>
 #include <stdlib.h>
-#include "my_sed.hpp"
 
 std::string readFromFile(char **argv)
 {
@@ -22,16 +21,15 @@ void    writeToFile(std::string toReturn, char **argv)
     outfile.close();
 }
 
-
 int main(int argc, char **argv)
 {
-    if(argc != 4 || !std::string(argv[2]).compare(""))
+    if(argc != 4 
+	|| !std::string(argv[2]).compare("")
+	|| !std::string(argv[2]).compare(std::string(argv[3])))
         return(1);
-
     std::string buffer = readFromFile(argv);
     std::cout << buffer << std::endl;
     std::cout << my_sed::sed(buffer, argv[2], argv[3]) << std::endl;
     writeToFile(my_sed::sed(buffer, argv[2], argv[3]), argv);
     return(0);
 }
-// ./exc nice.txt "" "" 

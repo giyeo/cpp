@@ -7,12 +7,12 @@ int main(void)
 {
     Zombie billy = Zombie("billy");
     billy.announce();
-    
+
     randomChump("alice");
 
     Zombie *mark = newZombie("mark");
     mark->announce();
     delete mark;
-    
+
     return(0);
 }
