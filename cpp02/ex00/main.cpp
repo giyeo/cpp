@@ -1,8 +1,15 @@
 #include <iostream>
-
-using std::cout;
+#include "Fixed.hpp"
 
 int main()
 {
-	cout << "Hello\n";
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
+	c = b;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	return 0;
+
 }

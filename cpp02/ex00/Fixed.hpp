@@ -1,13 +1,14 @@
 #ifndef __FIXED_HPP__
 #define __FIXED_HPP__
+#include <iostream>
 
-class FixedPointNumber
+class Fixed
 {
 	public:
-		FixedPointNumber(void);
-		FixedPointNumber(const FixedPointNumber &other);
-		FixedPointNumber& operator=(const FixedPointNumber &other);
-		~FixedPointNumber(void);
+		Fixed(void);
+		Fixed(const Fixed &other);
+		Fixed& operator=(const Fixed &other);
+		~Fixed(void);
 
 		int	getRawBits(void) const;
 		void setRawBits(int const raw);
