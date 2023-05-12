@@ -22,14 +22,14 @@ Fixed::Fixed(void)
 Fixed::Fixed(const Fixed &other)
 {
 	std::cout << "Copy constructor called\n";
-	numberValue = other.numberValue;
+	this->numberValue = other.getRawBits();
 }
 
 Fixed& Fixed::operator=(const Fixed &other)
 {
 	std::cout << "Copy assignment operator called\n";
 	if(this != &other)
-	{}
+		this->numberValue = other.getRawBits();
 	return *this;
 }
 
