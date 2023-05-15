@@ -1,8 +1,8 @@
-NAME := recreateLogs
+NAME := fixedPoints
 CC := c++
-CFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address -Wfatal-errors
 
-SRCS := ./main.cpp ./Account.cpp
+SRCS := ./main.cpp ./Fixed.cpp
 
 OBJDIR := ./objs/
 OBJS := $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
