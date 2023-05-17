@@ -2,10 +2,25 @@
 
 int main(void)
 {
-    ClapTrap a;
-    const std::string targ = "f";
-    const std::string& target = targ;
-    std::cout << target << '\n';
-    a.attack(target);
-    return (0);
+    ClapTrap robin("Robin");
+
+	std::cout << std::endl;
+
+	robin.attack("Batman");
+	std::cout << std::endl;
+
+	robin.takeDamage(4);
+	std::cout << std::endl;
+
+	robin.takeDamage(8);
+	std::cout << std::endl;
+
+    robin.takeDamage(8);
+	std::cout << std::endl;
+
+	robin.beRepaired(23);
+	std::cout << std::endl;
+
+	robin.beRepaired(4);
+	std::cout << std::endl;
 }
