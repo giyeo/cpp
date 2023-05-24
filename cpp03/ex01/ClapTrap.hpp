@@ -3,7 +3,10 @@
 #include <iostream>
 #include <string>
 
-class ClapTrap 
+void noEnergyAnnounce( std::string name );
+void noHitPointsAnnounce( std::string name );
+
+class ClapTrap
 {
     public:
         ClapTrap(void);
@@ -23,7 +26,7 @@ class ClapTrap
         void setAttackDamage(unsigned int attackDamage);
         void setEnergyPoints(unsigned int energyPoints);
         void setHitPoints(unsigned int hitPoints);
-    private:
+    protected:
         const std::string name;
         unsigned int hitPoints;
         unsigned int energyPoints;

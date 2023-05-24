@@ -1,6 +1,6 @@
 #include "Weapon.hpp"
 
-std::string Weapon::getType( void ) const
+const std::string& Weapon::getType( void ) const
 {
     return(this->type);
 }

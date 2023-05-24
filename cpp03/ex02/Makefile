@@ -1,8 +1,8 @@
-NAME := fixedPoints
+NAME := clap
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address -Wfatal-errors
 
-SRCS := ./main.cpp ./Fixed.cpp
+SRCS := ./main.cpp ./ClapTrap.cpp ./ScavTrap.cpp /FragTrap.cpp
 
 OBJDIR := ./objs/
 OBJS := $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))

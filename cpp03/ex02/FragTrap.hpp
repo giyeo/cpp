@@ -1,9 +1,9 @@
-#ifndef __FRAGTRAP_HPP__
-#define __FRAGTRAP_HPP__
+#ifndef __SCAVTRAP_HPP__
+#define __SCAVTRAP_HPP__
 
 #include "ClapTrap.hpp"
 
-class FragTrap : virtual public ClapTrap
+class FragTrap : public ClapTrap
 {
     public:
         FragTrap(void);
@@ -12,7 +12,6 @@ class FragTrap : virtual public ClapTrap
         FragTrap(const FragTrap &other);
         FragTrap& operator=(const FragTrap &other);
 
-        void attack(const std::string& target);
         void highFivesGuys(void);
 };
 

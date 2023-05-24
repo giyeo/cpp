@@ -35,12 +35,12 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &other)
 
 void noEnergyAnnounce( std::string name )
 {
-    std::cout << "ClapTrap " << name << " has no energy left.\n";
+    std::cout << name << " has no energy left.\n";
 }
 
 void noHitPointsAnnounce( std::string name )
 {
-    std::cout << "ClapTrap " << name << " has no hitPoints left.\n";
+    std::cout << name << " has no hitPoints left.\n";
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -59,7 +59,7 @@ void ClapTrap::attack(const std::string& target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
     (amount > hitPoints) ? this->hitPoints = 0 : this->hitPoints -= amount;
-    std::cout << "ClapTrap " << this->getName() << " took " << amount << " of damage, and now has " << this->getHitPoints() << " hitPoints left.\n";
+    std::cout << this->getName() << " took " << amount << " of damage, and now has " << this->getHitPoints() << " hitPoints left.\n";
     this->energyPoints--;
 }
 
@@ -70,7 +70,7 @@ void ClapTrap::beRepaired(unsigned int amount)
     if(!this->getHitPoints())
         return noHitPointsAnnounce(this->getName());
     this->hitPoints += amount;
-    std::cout << "ClapTrap " << this->getName() << " has recovered " << amount << " hitPoints!\n";
+    std::cout << this->getName() << " has recovered " << amount << " hitPoints!\n";
     this->energyPoints--;
 }
 

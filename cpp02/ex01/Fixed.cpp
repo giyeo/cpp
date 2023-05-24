@@ -4,7 +4,7 @@ const int Fixed::fractionalBits = 8;
 
 int	Fixed::toInt( void ) const
 {
-	return ((float)this->numberValue / (1 << Fixed::fractionalBits));
+	return (roundf((float)this->numberValue / (1 << Fixed::fractionalBits)));
 }
 
 float Fixed::toFloat( void ) const
@@ -15,13 +15,13 @@ float Fixed::toFloat( void ) const
 Fixed::Fixed(const int number)
 {
 	std::cout << "Int constructor called\n";
-	this->numberValue = (int)(number * (1 << Fixed::fractionalBits));
+	this->numberValue = (int)roundf(number * (1 << Fixed::fractionalBits));
 }
 
 Fixed::Fixed(const float fnumber)
 {
 	std::cout << "Float constructor called\n";
-	this->numberValue = (int)(fnumber * (1 << Fixed::fractionalBits));
+	this->numberValue = (int)roundf(fnumber * (1 << Fixed::fractionalBits));
 }
 
 int Fixed::getRawBits(void) const

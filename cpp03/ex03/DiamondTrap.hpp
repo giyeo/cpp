@@ -14,19 +14,10 @@ class DiamondTrap : public FragTrap, public ScavTrap
         DiamondTrap(const DiamondTrap &other);
         DiamondTrap& operator=(const DiamondTrap &other);
 
-        void attack(const std::string& target);
-        void takeDamage(unsigned int amount);
-        void beRepaired(unsigned int amount);
-
+        void whoAmi(void) const;
         std::string getName(void)const;
-        unsigned int getHitPoints(void) const;
-        unsigned int getEnergyPoints(void) const;
-        unsigned int getAttackDamage(void) const;
-        void setAttackDamage(unsigned int attackDamage);
-        void setEnergyPoints(unsigned int energyPoints);
-        void setHitPoints(unsigned int hitPoints);
     private:
-        const std::string name;
+        std::string name;
 };
 
 #endif

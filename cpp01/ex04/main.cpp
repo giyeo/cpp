@@ -16,7 +16,8 @@ std::string readFromFile(char **argv)
 
 void    writeToFile(std::string toReturn, char **argv)
 {
-    std::fstream outfile(argv[1], std::ios::out);
+    std::string filename = std::string(argv[1]) + ".replace";
+    std::fstream outfile(filename.c_str(), std::ios::out);
     outfile << toReturn;
     outfile.close();
 }
@@ -28,8 +29,6 @@ int main(int argc, char **argv)
 	|| !std::string(argv[2]).compare(std::string(argv[3])))
         return(1);
     std::string buffer = readFromFile(argv);
-    std::cout << buffer << std::endl;
-    std::cout << my_sed::sed(buffer, argv[2], argv[3]) << std::endl;
     writeToFile(my_sed::sed(buffer, argv[2], argv[3]), argv);
     return(0);
 }
