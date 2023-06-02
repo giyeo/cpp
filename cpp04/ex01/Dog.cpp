@@ -1,8 +1,9 @@
 #include "Dog.hpp"
 
-Dog::Dog() : Animal("Dog") {}
+Dog::Dog() : Animal("Dog"), brain(new Brain()) {}
 
 Dog::~Dog() {
+	delete brain;
 	std::cout << type << " went to heaven.\n";
 };
 
@@ -10,7 +11,7 @@ void Dog::makeSound() const {
     std::cout << "Dog: Woof!\n";
 };
 
-Dog::Dog(const Dog &other) : Animal(other) {
+Dog::Dog(const Dog &other) : Animal(other), brain(new Brain()) {
     *this = other;
 };
 

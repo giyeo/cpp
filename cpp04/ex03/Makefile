@@ -1,8 +1,8 @@
-NAME := animals
+NAME := abstract
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address -Wfatal-errors
 
-SRCS := ./main.cpp ./Animal.cpp ./Dog.cpp ./Cat.cpp ./WrongAnimal.cpp ./WrongCat.cpp
+SRCS := ./main.cpp
 
 OBJDIR := ./objs/
 OBJS := $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
