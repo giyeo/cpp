@@ -8,11 +8,11 @@ class WrongAnimal {
     public:
         WrongAnimal();
 		WrongAnimal(std::string type);
-        virtual ~WrongAnimal();
+        ~WrongAnimal();
         WrongAnimal(const WrongAnimal &other);
         WrongAnimal& operator=(const WrongAnimal &other);
 
-        void virtual makeSound() const;
+        void makeSound() const;
 		std::string getType() const;
 	protected:
         std::string type;

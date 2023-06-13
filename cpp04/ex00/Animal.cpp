@@ -9,19 +9,20 @@ Animal::Animal(std::string type) : type(type) {
 };
 
 Animal::~Animal(void) {
-	std::cout << "Animal class \"" << type << "\" is dead.\n"; 
+	std::cout << "Animal class \"" << type << "\" is no longer available.\n"; 
 };
 
-Animal::Animal(const Animal &other)
-{
-    *this = other;
-}
-
-Animal& Animal::operator=(const Animal &other)
-{
-    if(this != &other) {}
-    return *this;
+Animal::Animal(const Animal &other) {
+	this->type = other.type;
 };
+
+Animal& Animal::operator=(const Animal &other) {
+	if(this != &other) {
+		this->type = other.type;
+	}
+	return *this;
+};
+
 
 std::string Animal::getType() const {
 	return this->type;

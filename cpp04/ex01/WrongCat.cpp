@@ -7,10 +7,16 @@ WrongCat::~WrongCat() {
 };
 
 WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other) {
-    *this = other;
+	this->type = other.type;
 };
 
 WrongCat& WrongCat::operator=(const WrongCat &other) {
-	if(this != &other) {}
-    return *this;
+	if(this != &other) {
+		this->type = other.type;
+	}
+	return *this;
 };
+
+void WrongCat::makeSound() const{
+	std::cout << "WrongCat Sound! \n";
+}

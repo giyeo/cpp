@@ -4,21 +4,36 @@
 
 int main(void)
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
+    const Animal* dog = new Dog();
+    const Animal* cat = new Cat();
+    const Animal* capivara = new Animal("Capivara");
+    std::cout << std::endl;
 
-	delete meta;
-	delete i;
-	delete j;
+    std::cout << dog->getType() << " " << std::endl;
+    std::cout << cat->getType() << " " << std::endl;
+    std::cout << capivara->getType() << " " << std::endl;
+    std::cout << std::endl;
 
-	const WrongAnimal* n = new WrongCat();
-	std::cout << n->getType() << " " << std::endl;
-	n->makeSound();
-	delete n;
+    dog->makeSound();
+    cat->makeSound();
+    capivara->makeSound();
+    std::cout << std::endl;
+
+    delete dog;
+    delete cat;
+    delete capivara;
+    std::cout << std::endl;
+
+	const Animal* cat2 = new Cat();
+	std::cout << cat2->getType() << " " << std::endl;
+	cat2->makeSound();
+	delete cat2;
+
+    const WrongAnimal* wcat = new WrongCat();
+
+    std::cout << wcat->getType() << " " << std::endl;
+    wcat->makeSound();
+    delete wcat;
+
+    return 0;
 }

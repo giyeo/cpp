@@ -12,15 +12,15 @@ Animal::~Animal(void) {
 	std::cout << "Animal class \"" << type << "\" is dead.\n"; 
 };
 
-Animal::Animal(const Animal &other)
-{
-    *this = other;
-}
+Animal::Animal(const Animal &other) {
+	this->type = other.type;
+};
 
-Animal& Animal::operator=(const Animal &other)
-{
-    if(this != &other) {}
-    return *this;
+Animal& Animal::operator=(const Animal &other) {
+	if(this != &other) {
+		this->type = other.type;
+	}
+	return *this;
 };
 
 std::string Animal::getType() const {

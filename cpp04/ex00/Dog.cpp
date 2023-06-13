@@ -11,10 +11,12 @@ void Dog::makeSound() const {
 };
 
 Dog::Dog(const Dog &other) : Animal(other) {
-    *this = other;
+	this->type = other.type;
 };
 
 Dog& Dog::operator=(const Dog &other) {
-	if(this != &other) {}
-    return *this;
+	if(this != &other) {
+		this->type = other.type;
+	}
+	return *this;
 };

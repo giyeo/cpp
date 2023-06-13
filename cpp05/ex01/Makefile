@@ -1,8 +1,8 @@
-NAME := abstract
+NAME := bureaucrats
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address -Wfatal-errors
 
-SRCS := ./main.cpp
+SRCS := ./main.cpp ./Bureaucrat.cpp ./Form.cpp
 
 OBJDIR := ./objs/
 OBJS := $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))

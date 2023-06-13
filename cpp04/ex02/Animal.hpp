@@ -5,17 +5,20 @@
 #include <iostream>
 
 class Animal {
-	public:
+    public:
         virtual ~Animal();
         Animal& operator=(const Animal &other);
-        virtual void makeSound(void) const;
+
+		virtual std::string getIdea(int index) const = 0;
+		virtual void setIdea(std::string idea, int index) = 0;
+
+        virtual void makeSound(void) const = 0;
 		std::string getType() const;
     protected:
-        Animal();
+        std::string type;
+		Animal();
         Animal(std::string type);
         Animal(const Animal &other);
-
-        std::string type;
 };
 
 #endif

@@ -9,19 +9,20 @@ WrongAnimal::WrongAnimal(std::string type) : type(type) {
 };
 
 WrongAnimal::~WrongAnimal(void) {
-	std::cout << "WrongAnimal class \"" << type << "\" is dead.\n"; 
+	std::cout << "WrongAnimal class \"" << type << "\" is no longer available.\n"; 
 };
 
-WrongAnimal::WrongAnimal(const WrongAnimal &other)
-{
-    *this = other;
-}
-
-WrongAnimal& WrongAnimal::operator=(const WrongAnimal &other)
-{
-    if(this != &other) {}
-    return *this;
+WrongAnimal::WrongAnimal(const WrongAnimal &other) {
+	this->type = other.type;
 };
+
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal &other) {
+	if(this != &other) {
+		this->type = other.type;
+	}
+	return *this;
+};
+
 
 std::string WrongAnimal::getType() const {
 	return this->type;
