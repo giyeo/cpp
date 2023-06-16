@@ -13,10 +13,10 @@ Form::Form(std::string name, int signGrade, int executeGrade):
 	isSigned(false),
 	signGradeRequired(signGrade),
 	executeGradeRequired(executeGrade) {
-	(signGradeRequired <= 150 || executeGradeRequired <= 150) 
-		? ( (signGradeRequired < 1 || executeGradeRequired < 1)
-			? throw GradeTooHighException() : 0 )
-		: throw GradeTooLowException();
+	(signGradeRequired > 150 || executeGradeRequired > 150)
+		? throw GradeTooLowException() : 0;
+	(signGradeRequired < 1 || executeGradeRequired < 1)
+		? throw GradeTooHighException() : 0;
 	};
 
 Form::Form(const Form &other):
@@ -37,12 +37,10 @@ Form &Form::operator=(const Form& other)
 }
 
 void	Form::beSigned( Bureaucrat &bureaucrat) {
-	if (this->signGradeRequired < bureaucrat.getGrade()) {
-		this->isSigned = false;
+	if (this->signGradeRequired < bureaucrat.getGrade())
 		throw Form::GradeTooLowException();
-	} else {
+	else
 		this->isSigned = true;
-	}
 }
 
 const std::string Form::getName() const {

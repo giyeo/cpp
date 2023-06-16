@@ -5,10 +5,10 @@ void    testMakeForm(Intern intern, std::string name, std::string target)
     AForm *form = intern.makeForm(name, target);
 
     if (form != NULL) {
-        std::cout << "Name: " << form->getName() << std::endl;
-        std::cout << "Grade To be Executed: " << form->getExecuteGradeRequired() << std::endl;
-        std::cout << "Grade To be Signed: " << form->getSignGradeRequired() << std::endl;
-        std::cout << std::endl;
+        std::cout << "Name: " << form->getName() << "\n";
+        std::cout << "Grade To be Executed: " << form->getExecuteGradeRequired() << "\n";
+        std::cout << "Grade To be Signed: " << form->getSignGradeRequired() << "\n";
+        std::cout << "\n";
     }
     delete form;
 }

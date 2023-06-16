@@ -10,7 +10,6 @@ class Form {
 		Form();
         ~Form();
 		Form(std::string name, int signGrade, int executeGrade);
-
         Form(const Form &other);
         Form& operator=(const Form &other);
 
@@ -26,11 +25,11 @@ class Form {
 		const int signGradeRequired;
 		const int executeGradeRequired;
 
-		struct GradeTooHighException : public std::exception {
+		class GradeTooHighException : public std::exception {
 				const char* what() const throw();
 		};
 
-		struct GradeTooLowException : public std::exception {
+		class GradeTooLowException : public std::exception {
 				const char* what() const throw();
 		};
 };

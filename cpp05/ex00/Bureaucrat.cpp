@@ -2,12 +2,9 @@
 
 Bureaucrat::Bureaucrat(): name("default"), grade(100) {};
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : name(name) {
-	(grade <= 150)
-		? ( (grade < 1) 
-			? throw GradeTooHighException() : 0)
-		: throw GradeTooLowException();
-	this->grade = grade;
+Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade) {
+	(grade > 150) ? throw GradeTooLowException() : 0;
+	(grade < 1) ? throw GradeTooHighException() : 0;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &other): grade(other.getGrade()) {
@@ -34,7 +31,7 @@ void Bureaucrat::decrementGrade(int delta) {
 		: this->grade += delta;
 }
 
-size_t Bureaucrat::getGrade() const {
+int Bureaucrat::getGrade() const {
 	return this->grade;
 }
 
@@ -51,6 +48,6 @@ const char *Bureaucrat::GradeTooLowException::what() const throw() {
 }
 
 std::ostream& operator<<( std::ostream& os, const Bureaucrat& src ) {
-	os << src.getName() << ", bureaucrat grade " << src.getGrade() << std::endl;
+	os << src.getName() << ", bureaucrat grade " << src.getGrade() << "\n";
 	return (os);
 }

@@ -1,7 +1,6 @@
 #ifndef __BUREAUCRAT_HPP__
 #define __BUREAUCRAT_HPP__
 
-#include <string>
 #include <exception>
 #include <iostream>
 
@@ -16,17 +15,18 @@ class Bureaucrat {
 
 		void incrementGrade(int delta);
 		void decrementGrade(int delta);
-		size_t getGrade() const;
+
+		int getGrade() const;
 		std::string getName() const;
 	private:
 		const std::string name;
-		size_t grade;
+		int grade;
 
-		struct GradeTooHighException : public std::exception {
+		class GradeTooHighException : public std::exception {
 				const char* what() const throw();
 		};
 
-		struct GradeTooLowException : public std::exception {
+		class GradeTooLowException : public std::exception {
 				const char* what() const throw();
 		};
 };

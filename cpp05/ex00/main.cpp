@@ -2,13 +2,14 @@
 
 void	putBreaksLines(int n) {
 	for (int i = 0; i < n; i++)
-		std::cout << std::endl;
+		std::cout << "\n";
 }
 
 void	printBureaucrat(Bureaucrat &b) {
 		std::cout
-			<< "Name: " << b.getName() << std::endl
-			<< "Grade: " << b.getGrade() << std::endl;
+			<< "Name: " << b.getName() << "\n"
+			<< "Grade: " << b.getGrade() << "\n";
+		putBreaksLines(2);
 }
 
 int main(void) {
@@ -17,44 +18,43 @@ int main(void) {
 	printBureaucrat(Marik);
 
 	try {
-		std::cout << "Try down grade by 130: " << Marik.getGrade() + 130 << std::endl;
+		std::cout << "Try down grade by 130: " << Marik.getGrade() + 130 << "\n";
 		Marik.decrementGrade(130);
 	}
 	catch (const std::exception & e) {
-		std::cout << "Give up your " << e.what() << std::endl;
+		std::cout << "Can't change your grade: " << e.what() << "\n";
 	}
 
-	putBreaksLines(2);
 	printBureaucrat(Marik);
 
 	try {
-		std::cout << "Try down grade by 105: " << Marik.getGrade() + 105 << std::endl;
+		std::cout << "Try down grade by 105: " << Marik.getGrade() + 105 << "\n";
 		Marik.decrementGrade(105);
 	}
 	catch (const std::exception & e) {
-		std::cout << "Give up your " << e.what() << std::endl;
+		std::cout << "Can't change your grade: " << e.what() << "\n";
 	}
-	putBreaksLines(2);
+	
 	printBureaucrat(Marik);
 
 	try {
-		std::cout << "Try descrease grade by 25:" << std::endl;
+		std::cout << "Try descrease grade by 25:" << "\n";
 		Marik.incrementGrade(25);
 	}
 	catch (const std::exception & e) {
-		std::cout << "Give up your " << e.what() << std::endl;
+		std::cout << "Can't change your grade: " << e.what() << "\n";
 	}
-	putBreaksLines(2);
+	
 	printBureaucrat(Marik);
 
 	try {
-		std::cout << "Try descrease grade by 125:" << std::endl;
+		std::cout << "Try descrease grade by 125:" << "\n";
 		Marik.incrementGrade(125);
 	}
 	catch (const std::exception & e) {
-		std::cout << "Give up your " << e.what() << std::endl;
+		std::cout << "Can't change your grade: " << e.what() << "\n";
 	}
-	putBreaksLines(2);
+
 	printBureaucrat(Marik);
 
 	return (0);

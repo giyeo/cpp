@@ -25,15 +25,15 @@ class AForm {
 
 		virtual void execute(Bureaucrat &bureaucrat) const = 0;
 	protected:
-		struct GradeTooHighException : public std::exception {
+		class GradeTooHighException : public std::exception {
 				const char* what() const throw();
 		};
 
-		struct GradeTooLowException : public std::exception {
+		class GradeTooLowException : public std::exception {
 				const char* what() const throw();
 		};
 
-		struct FormIsNotSigned : public std::exception {
+		class FormIsNotSigned : public std::exception {
 				const char* what() const throw();
 		};
 	private:

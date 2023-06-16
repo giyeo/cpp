@@ -24,11 +24,11 @@ class Bureaucrat {
 
 		void executeForm( AForm const & form);
 	protected:
-		struct GradeTooHighException : public std::exception {
+		class GradeTooHighException : public std::exception {
 				const char* what() const throw();
 		};
 
-		struct GradeTooLowException : public std::exception {
+		class GradeTooLowException : public std::exception {
 				const char* what() const throw();
 		};
 	private:

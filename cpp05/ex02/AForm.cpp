@@ -13,10 +13,10 @@ AForm::AForm(std::string name, int signGrade, int executeGrade):
 	isSigned(false),
 	signGradeRequired(signGrade),
 	executeGradeRequired(executeGrade) {
-	(signGradeRequired <= 150 || executeGradeRequired <= 150) 
-		? ( (signGradeRequired < 1 || executeGradeRequired < 1)
-			? throw GradeTooHighException() : 0 )
-		: throw GradeTooLowException();
+	(signGradeRequired > 150 || executeGradeRequired > 150)
+		? throw GradeTooLowException() : 0;
+	(signGradeRequired < 1 || executeGradeRequired < 1)
+		? throw GradeTooHighException() : 0;
 	};
 
 AForm::AForm(const AForm &other):
