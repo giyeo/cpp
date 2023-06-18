@@ -2,7 +2,6 @@ NAME := templates
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address -Wfatal-errors
 
-#SRCS := ./ex01.cpp
 SRCS := ./main.cpp
 
 OBJDIR := ./objs/

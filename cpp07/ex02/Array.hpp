@@ -4,6 +4,24 @@
 #include <algorithm>
 #include <stdexcept>
 #include <stdint.h>
+#include <ctime>
+
+template <typename T>
+void printIt(T a) {
+    std::cout << a << "\n";
+}
+
+template <typename T>
+void setRandNumber(T &n) {
+	srand(time(0));
+	n = rand();
+}
+
+template <typename T>
+void setRandNumberFloat(T &n) {
+	srand(time(0));
+	n = rand() / 9999.0;
+}
 
 template <typename T>
 class Array {
@@ -27,7 +45,7 @@ class Array {
         uint32_t size(void) const{
             return this->length;
         }
-        T& operator[](uint32_t index) {
+        T& operator[](uint32_t index) const {
             if (index >= length)
                 throw std::out_of_range("Index out of range");
             return this->content[index];
