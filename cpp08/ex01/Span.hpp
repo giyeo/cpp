@@ -3,6 +3,11 @@
 
 #include <stdint.h>
 #include <list>
+#include <stdexcept>
+#include <vector>
+#include <algorithm>
+#include <limits.h>
+#include <deque>
 
 class Span {
 	public:
@@ -15,9 +20,10 @@ class Span {
 		void addNumber(int number);
 		int shortestSpan();
 		int longestSpan();
-
+		void fillSpan();
 	private:
-		std::list<int> *values;
+        uint32_t size;
+		std::vector<int> values;
 };
 
 #endif
