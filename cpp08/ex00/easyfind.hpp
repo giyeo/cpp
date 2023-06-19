@@ -1,3 +1,6 @@
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
+
 #include <deque>
 #include <vector>
 #include <list>
@@ -11,3 +14,5 @@ typename T::iterator easyFind(T &container, int toFind) {
 		throw std::runtime_error("Not found");
 	return (position);
 };
+
+#endif
