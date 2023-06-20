@@ -1,4 +1,4 @@
-NAME := mutantStack
+NAME := RPN
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address -Wfatal-errors
 
