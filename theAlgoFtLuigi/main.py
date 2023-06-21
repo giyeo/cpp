@@ -10,7 +10,8 @@ def generate_random_numbers(n):
     return random_numbers
 
 
-X = generate_random_numbers(3000)
+# X = generate_random_numbers(3000)
+X = [50 ,46 ,100 ,66 ,81 ,28 ,70 ,64 ,76 ,14 ,61 ,75 ,86 ,35 ,88 ,17 ,51 ,97 ,99 ,21 ,56 ,68 ,67 ,92 ,18 ,47 ,16 ,82 ,95 ,12 ,65 ,63 ,94 ,77 ,37 ,54 ,43 ,72 ,10 ,33 ,20 ,55 ,26 ,42 ,90 ,71 ,39 ,25 ,74 ,15]
 n = len(X)
 
 start = time.time()
@@ -61,16 +62,16 @@ S = sorted(S)
 #4 Insert at the start of S the element that was paired
 #  with the first and smallest element of S
 
-firstSmallest = 0
-toPop = 0
-for i, each in enumerate(L):
-	if(each[1] == S[0]):
-		firstSmallest = each[0]
-		toPop = i
-	else:
-		each.pop(1)
-L.pop(toPop)
-S.insert(0, firstSmallest)
+# firstSmallest = 0
+# toPop = 0
+# for i, each in enumerate(L):
+# 	if(each[1] == S[0]):
+# 		firstSmallest = each[0]
+# 		toPop = i
+# 	else:
+# 		each.pop(1)
+# L.pop(toPop)
+# S.insert(0, firstSmallest)
 
 #print("----------")
 #print("L [n/2]", L, straggler)
@@ -80,14 +81,14 @@ S.insert(0, firstSmallest)
 #with a specially chosen insertion ordering described below.
 #Use binary search in subsequences of S (as described below)
 # to determine the position at which each element should be inserted.
-
+counter = 0
 def binary_search_insert(S, n):
     left = 0
     right = len(S) - 1
 
     while left <= right:
         mid = (left + right) // 2
-
+        #print("RUN:",counter,">",mid,":",left,",",right,"{\}",S[mid],n)
         if S[mid] == n:
             # If the number already exists in the list, insert it at the rightmost position
             S.insert(mid + 1, n)
@@ -103,6 +104,7 @@ def binary_search_insert(S, n):
 
 for each in L:
 	index = binary_search_insert(S, each[0])
+	counter += 1
 if(straggler != -1):
 	index = binary_search_insert(S, straggler)
 
