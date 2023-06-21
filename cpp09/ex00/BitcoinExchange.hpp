@@ -20,10 +20,12 @@ class BitcoinExchange {
 		BitcoinExchange();
 		~BitcoinExchange();
 		BitcoinExchange(std::string inputFilePath);
+		BitcoinExchange(const BitcoinExchange &other);
+		BitcoinExchange &operator=(const BitcoinExchange &other);
 
 		void	loadData();
 		double	getValueByNearestDate(std::string date);
-		void calculateBitcoinExchange(std::string date, std::string strValue);
+		void	calculateBitcoinExchange(std::string date, std::string strValue);
 	private:
 		std::map<std::string, std::string> database;
 		bool		isDatabaseLoaded;
