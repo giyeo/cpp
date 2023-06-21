@@ -8,12 +8,18 @@ bool isOperator(char c) {
 
 void RPN::invalidInput() {
 	std::string valid = "+-/*0123456789";
+	bool wasSpace = true;
 	for (unsigned int i = 0; i < input.length(); ++i) {
 		char c = input[i];
 		if(c != ' ') {
+			if(wasSpace == false)
+				throw std::runtime_error("Error: Invalid Character input");
+			wasSpace = false;
 			if(std::find(valid.begin(), valid.end(), c) == valid.end())
 				throw std::runtime_error("Error: Invalid Character input");
 		}
+		else
+			wasSpace = true;
 	}
 	std::string result = input;
     result.erase(std::remove_if(result.begin(), result.end(), ::isspace), result.end());
