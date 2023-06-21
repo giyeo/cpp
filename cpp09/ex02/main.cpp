@@ -18,14 +18,15 @@ int main(int argc, char **argv) {
             num = std::atoi(argv[i]);
             if(num < 0)
                 throw std::runtime_error("Negative Number was found");
-            if(std::find(input.begin(), input.end(), num) != input.end())
-                throw std::runtime_error("Duplicates not allowed");
+            // if(std::find(input.begin(), input.end(), num) != input.end())
+            //     throw std::runtime_error("Duplicates not allowed");
             input.push_back(static_cast<unsigned int>(num));
         }
         else
             throw std::runtime_error("Non-numeric value was found.");
     }
 
+	//merge-insertion sort using list and vector
     //pmergeme(input).sort(input);
 
     
