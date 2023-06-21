@@ -10,10 +10,12 @@ class RPN {
 		RPN();
 		RPN(const char *input);
 		~RPN();
+		RPN(const RPN &other);
+		RPN &operator=(const RPN &other);
+	private:
 		void invalidInput(void);
 		void invalidRPN(void);
 		void calcRPN(void);
-		
 		std::stack<int> stack;
 		std::string input;
 };
